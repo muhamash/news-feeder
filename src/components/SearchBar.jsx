@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import fetchSearchResults from '../utilities/functions/FetchSearchResults';
 
 export default function SearchBar() {
   const [isHovered, setIsHovered] = useState(false);
@@ -12,16 +13,18 @@ export default function SearchBar() {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm !== '') {
-        console.log("Searching for:", searchTerm);
+        console.log( "Searching for:", searchTerm );
+        fetchSearchResults(`http://localhost:8000/v2/search?q=${searchTerm}`)
       }
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(delayDebounceFn); 
   }, [searchTerm]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); 
     console.log("Searching for:", searchTerm);
+    
   };
 
   return (
@@ -34,9 +37,9 @@ export default function SearchBar() {
         <img className="cursor-pointer" src="../../public/assets/icons/search.svg" alt="Search" />
         {isHovered && (
           <form onSubmit={handleSubmit}>
-            <input 
+            <input
               type="text" 
-              className="absolute top-0 right-0 w-[200px] h-[30px] px-4 py-2 border border-gray-300 rounded-md transition-opacity duration-300 delay-300" 
+              className="absolute top-0 right-0 w-[100px] h-[30px] px-4 py-2 border border-gray-300 rounded-md transition-opacity duration-300 delay-300" 
               placeholder="Search..." 
               value={searchTerm}
               onChange={handleInputChange}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import NewsItems from './NewsItems';
 
 export default function Main() {
@@ -10,7 +10,7 @@ export default function Main() {
 
   const fetchData = () => {
     try {
-      fetch("http://localhost:8000/v2/top-headlines?category=general")
+      fetch("http://localhost:8000/v2/top-headlines?")
         .then((result) => result.json())
         .then((data) => {
           setData(data.articles); 
