@@ -1,11 +1,12 @@
 import './App.css'
+import Nav from './components/Nav'
 
 function App() {
 
   return (
     <>
-      <div className='text-green-600'>
-        hello
+      <div className=''>
+        <Nav/>
     </div>
     </>
   )
