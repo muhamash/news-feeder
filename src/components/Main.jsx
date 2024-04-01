@@ -13,7 +13,7 @@ export default function Main() {
       fetch("http://localhost:8000/v2/top-headlines?category=general")
         .then((result) => result.json())
         .then((data) => {
-          setData(data.articles); // Assuming 'articles' is the array containing news items in the response
+          setData(data.articles); 
           console.log(data);
         })
         .catch((err) => {

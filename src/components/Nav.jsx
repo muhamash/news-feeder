@@ -1,4 +1,18 @@
-export default function Nav() {
+import { useState } from "react";
+import SearchBar from "./SearchBar";
+
+export default function Nav ()
+{
+    const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
     return (
         <nav className="border-b border-black py-6 md:py-8">
             <div
@@ -64,9 +78,7 @@ export default function Nav() {
                         alt="Lws"
                     />
                 </a>
-                <div className="flex items-center space-x-3 lg:space-x-8">
-                    <img src="../../public/assets/icons/search.svg" />
-                </div>
+                <SearchBar/>
             </div>
             <div className="container mx-auto mt-6">
                 <ul

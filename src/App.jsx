@@ -9,7 +9,7 @@ function App() {
     <>
       <div className=''>
         <Nav />
-        <div className='container mx-auto grid grid-cols-12 gap-8'>
+        <div className='container mx-auto grid grid-cols-12 gap-8 py-10'>
           <Main />
         </div>
         <Footer />
