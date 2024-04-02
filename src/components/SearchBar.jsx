@@ -8,24 +8,23 @@ export default function SearchBar() {
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
-  const handleInputChange = (event) => setSearchTerm(event.target.value);
+  const handleInputChange = ( event ) =>
+  {
+    event.preventDefault(); 
+    console.log("Searching for:", searchTerm);
+    setSearchTerm(event.target.value);
+  }
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (searchTerm !== '') {
+      if (searchTerm.length >= 2) {
         console.log( "Searching for:", searchTerm );
         fetchSearchResults(`http://localhost:8000/v2/search?q=${searchTerm}`)
       }
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(delayDebounceFn); 
   }, [searchTerm]);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault(); 
-    console.log("Searching for:", searchTerm);
-    
-  };
 
   return (
     <div className="flex items-center space-x-3 lg:space-x-8">
@@ -36,15 +35,13 @@ export default function SearchBar() {
       >
         <img className="cursor-pointer" src="../../public/assets/icons/search.svg" alt="Search" />
         {isHovered && (
-          <form onSubmit={handleSubmit}>
-            <input
+          <input
               type="text" 
               className="absolute top-0 right-0 w-[100px] h-[30px] px-4 py-2 border border-gray-300 rounded-md transition-opacity duration-300 delay-300" 
               placeholder="Search..." 
               value={searchTerm}
               onChange={handleInputChange}
             />
-          </form>
         )}
       </div>
     </div>
