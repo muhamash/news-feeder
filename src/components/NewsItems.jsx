@@ -15,9 +15,9 @@ export default function NewsItems ( { title, text, time, imageSource, author, } 
     } );
 
     return (
-        <div className='col-span-12 grid grid-cols-12 gap-4'>
+        <div className='flex  gap-8 px-2'>
             {/* info */ }
-            <div className="col-span-12 lg:col-span-4">
+            <div className="w-1/2">
                 <a href="#"
                 ><h3
                     className="mb-2.5 text-2xl font-bold lg:text-[28px]"
@@ -32,13 +32,13 @@ export default function NewsItems ( { title, text, time, imageSource, author, } 
                 </p>
             </div>
             {/* thumb */ }
-            <div className="col-span-12 lg:col-span-8">
+            <div className="w-1/2">
                 <img
-                    className="w-full"
+                    className="w-full cursor-pointer hover:scale-110 duration-150 ease-in-out"
                     src={ imageSource }
                     alt="thumb"
                 />
-                <p className="mt-5 text-base text-[#5C5955]">
+                <p className="mt-5 text-base text-green-600">
                     { author }
                 </p>
             </div>
