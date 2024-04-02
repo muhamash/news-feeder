@@ -9,11 +9,11 @@ function App() {
     <>
       <div className=''>
         <Nav />
-        <div className='container mx-auto grid grid-cols-12 gap-8 py-10'>
+        <div className='container mx-auto py-10'>
           <Main />
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
