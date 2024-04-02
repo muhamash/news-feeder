@@ -8,7 +8,8 @@ const fetchSearchResults = async ( url ) =>
             throw new Error( 'Failed to fetch data' );
         }
         const data = await response.json();
-        console.log( "Search results:", data );
+        console.log( data );
+        return data;
     }
     catch ( error )
     {

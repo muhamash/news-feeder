@@ -1,17 +1,7 @@
-import { useState } from "react";
 import SearchBar from "./SearchBar";
 
 export default function Nav ()
 {
-    const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
 
     return (
         <nav className="border-b border-black py-6 md:py-8">
