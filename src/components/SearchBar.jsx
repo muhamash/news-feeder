@@ -23,7 +23,7 @@ export default function SearchBar() {
       }
     }, 500);
 
-    return () => clearTimeout(delayDebounceFn); 
+    return () => clearTimeout( delayDebounceFn );
   }, [searchTerm]);
 
   return (

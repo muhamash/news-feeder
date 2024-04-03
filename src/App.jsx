@@ -9,9 +9,7 @@ function App() {
     <>
       <div className=''>
         <Nav />
-        <div className='container mx-auto py-10'>
-          <Main />
-        </div>
+        <Main />
       </div>
       <Footer />
     </>
