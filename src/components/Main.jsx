@@ -20,7 +20,7 @@ export default function Main() {
   }, [] );
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-10'>
       { data.map( ( newsItem, index ) => (
         <NewsItems
           key={ index }
