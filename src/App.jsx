@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div className=''>
-        <Nav />
+        {/* <Nav /> */}
         <Main />
       </div>
       <Footer />
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
