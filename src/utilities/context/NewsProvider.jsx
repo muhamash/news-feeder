@@ -1,11 +1,7 @@
-/* eslint-disable react/prop-types */
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import fetchSearchResults from '../functions/FetchSearchResults';
 
-
-const NewsContext = createContext();
-
-export const useNewsContext = () => useContext( NewsContext );
+export const NewsContext = createContext();
 
 export const NewsProvider = ( { children } ) =>
 {
@@ -14,12 +10,14 @@ export const NewsProvider = ( { children } ) =>
     useEffect( () =>
     {
         fetchSearchResults( `http://localhost:8000/v2/top-headlines?` )
-            .then( data =>
+            .then( ( data ) =>
             {
                 setNewsData( data.articles );
                 console.log( 'Fetched news items:', data );
             } )
-            .catch( error => console.error( 'Error fetching news items:', error ) );
+            .catch( ( error ) =>
+                console.error( 'Error fetching news items:', error )
+            );
     }, [] );
 
     return (

@@ -1,27 +1,13 @@
-import { useEffect, useState } from 'react';
-import fetchSearchResults from '../utilities/functions/FetchSearchResults';
+import { useNewsContext } from '../utilities/context/CustomContext';
 import NewsItems from './NewsItems';
 
-export default function Main() {
-  const [data, setData] = useState([]);
-
-  useEffect( () =>
-  {
-    fetchSearchResults( 'http://localhost:8000/v2/top-headlines?' )
-      .then( ( data ) =>
-      {
-        setData( data.articles );
-        console.log( data );
-      } )
-      .catch( ( err ) =>
-      {
-        console.log( 'Error fetching data:', err );
-      } );
-  }, [] );
-
+export default function Main ()
+{
+  const { newsData } = useNewsContext();
+  
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-10'>
-      { data.map( ( newsItem, index ) => (
+      { newsData.map( ( newsItem, index ) => (
         <NewsItems
           key={ index }
           title={ newsItem.title }
