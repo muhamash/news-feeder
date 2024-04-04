@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import fetchSearchResults from '../utilities/functions/FetchSearchResults';
-import SearchResults from './Show';
 
 export default function SearchBar() {
   const [isHovered, setIsHovered] = useState(false);
@@ -15,18 +14,20 @@ export default function SearchBar() {
   }
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (searchTerm.length >= 2) {
-        console.log("Searching for:", searchTerm);
-        fetchSearchResults(`http://localhost:8000/v2/search?q=${searchTerm}`)
+    const delayDebounceFn = setTimeout( () =>
+    {
+      if ( searchTerm.length >= 2 )
+      {
+        console.log( "Searching for:", searchTerm );
+        fetchSearchResults( `http://localhost:8000/v2/search?q=${searchTerm}` )
           .then( data =>
           {
             console.log( data.result );
             setSearchResults( data.result );
-          })
-          .catch(error => console.error("Error fetching search results:", error));
+          } )
+          .catch( error => console.error( "Error fetching search results:", error ) );
       }
-    }, 500);
+    }, 500 );
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
@@ -50,9 +51,6 @@ export default function SearchBar() {
 
         )}
       </div>
-      {searchResults.length > 0 && (
-        <SearchResults results={searchResults} />
-      )}
     </div>
   );
 }
