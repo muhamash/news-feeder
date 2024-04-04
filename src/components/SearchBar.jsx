@@ -19,10 +19,10 @@ export default function SearchBar() {
       if (searchTerm.length >= 2) {
         console.log("Searching for:", searchTerm);
         fetchSearchResults(`http://localhost:8000/v2/search?q=${searchTerm}`)
-          .then( results =>
+          .then( data =>
           {
-            console.log( results.result );
-            setSearchResults( results );
+            console.log( data.result );
+            setSearchResults( data.result );
           })
           .catch(error => console.error("Error fetching search results:", error));
       }
