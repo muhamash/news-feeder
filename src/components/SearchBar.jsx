@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
+import { useNewsContext } from '../utilities/context/useNewsContext';
 import fetchSearchResults from '../utilities/functions/FetchSearchResults';
 
 export default function SearchBar() {
   const [isHovered, setIsHovered] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const { setSearchResultsData } = useNewsContext();
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -18,19 +20,26 @@ export default function SearchBar() {
     {
       if ( searchTerm.length >= 2 )
       {
-        console.log( "Searching for:", searchTerm );
-        fetchSearchResults( `http://localhost:8000/v2/search?q=${searchTerm}` )
-          .then( data =>
-          {
-            console.log( data.result );
-            setSearchResults( data.result );
-          } )
-          .catch( error => console.error( "Error fetching search results:", error ) );
+        search( searchTerm );
       }
     }, 500 );
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm]);
+  }, [ searchTerm ] );
+  
+  const search = async ( term ) =>
+  {
+    try
+    {
+      const data = await fetchSearchResults( `http://localhost:8000/v2/search?q=${term}` );
+      console.log( data.result );
+      setSearchResultsData( data.result );
+    }
+    catch ( error )
+    {
+      console.log( error )
+    }
+  };
 
   return (
     <div className="flex items-center space-x-3 lg:space-x-8">

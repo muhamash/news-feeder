@@ -1,4 +1,6 @@
 import { useContext } from 'react';
 import { NewsContext } from './NewsProvider';
 
-export const useNewsContext = () => useContext(NewsContext);
+export function useNewsContext() {
+  return useContext(NewsContext);
+}

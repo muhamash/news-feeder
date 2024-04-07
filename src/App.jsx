@@ -10,8 +10,8 @@ function App() {
     <>
       <NewsProvider>
         <div className=''>
-        <Nav />
-        <Main />
+          <Nav />
+          <Main />
         </div>
         <Footer />
       </NewsProvider>
