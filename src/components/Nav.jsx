@@ -61,13 +61,6 @@ export default function Nav ()
                     </svg>
                     <span>Thursday, February 25, 2021</span>
                 </div>
-                <a href="/">
-                    <img
-                        className="max-w-[100px] md:max-w-[165px]"
-                        src="../../public/assets/logo.png"
-                        alt="Lws"
-                    />
-                </a>
                 <SearchBar/>
             </div>
             <div className="container mx-auto mt-6">

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useNewsContext } from '../utilities/context/useNewsContext';
@@ -48,7 +49,7 @@ export default function SearchBar() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <img className="cursor-pointer" src="../../public/assets/icons/search.svg" alt="Search" />
+        <img className="cursor-pointer" src="/search.svg" alt="Search" />
         {isHovered && (
           <input
             type="text"
