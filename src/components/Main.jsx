@@ -1,36 +1,34 @@
-import { useEffect, useState } from 'react';
-import fetchSearchResults from '../utilities/functions/FetchSearchResults';
+import { useNewsContext } from '../utilities/context/useNewsContext';
 import NewsItems from './NewsItems';
 
 export default function Main() {
-  const [data, setData] = useState([]);
-
-  useEffect( () =>
-  {
-    fetchSearchResults( 'http://localhost:8000/v2/top-headlines?' )
-      .then( ( data ) =>
-      {
-        setData( data.articles );
-        console.log( data );
-      } )
-      .catch( ( err ) =>
-      {
-        console.log( 'Error fetching data:', err );
-      } );
-  }, [] );
+  const { newsData, searchResults } = useNewsContext();
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-10'>
-      { data.map( ( newsItem, index ) => (
-        <NewsItems
-          key={ index }
-          title={ newsItem.title }
-          text={ newsItem.description }
-          time={ newsItem.publishedAt }
-          imageSource={ newsItem.urlToImage }
-          author={ newsItem.author }
-        />
-      ) ) }
+      { searchResults.length > 0 ? (
+        searchResults.map( ( result, index ) => (
+          <NewsItems
+            key={ index }
+            title={ result.title }
+            text={ result.content }
+            time={ result.publishedAt }
+            imageSource={ result.urlToImage }
+            author={ result.author }
+          />
+        ) )
+      ) : (
+        newsData.map( ( newsItem, index ) => (
+          <NewsItems
+            key={ index }
+            title={ newsItem.title }
+            text={ newsItem.content }
+            time={ newsItem.publishedAt }
+            imageSource={ newsItem.urlToImage }
+            author={ newsItem.author }
+          />
+        ) )
+      ) }
     </div>
-  )
+  );
 }
