@@ -31,4 +31,3 @@ const debounceFn = (func, delay) => {
 };
 
 export { debounceFn, fetchSearchResults };
-
