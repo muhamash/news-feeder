@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
-import fetchSearchResults from '../functions/FetchSearchResults';
+import { fetchSearchResults } from '../functions/helper.js';
 
 export const NewsContext = createContext();
 
@@ -11,7 +11,7 @@ export const NewsProvider = ( { children } ) =>
 
     useEffect( () =>
     {
-        fetchSearchResults( `http://localhost:8000/v2/top-headlines?` )
+        fetchSearchResults(`http://localhost:8000/v2/top-headlines?`)
             .then( ( data ) =>
             {
                 setNewsData( data.articles );

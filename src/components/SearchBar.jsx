@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useNewsContext } from '../utilities/context/useNewsContext';
-import fetchSearchResults from '../utilities/functions/FetchSearchResults';
+import { fetchSearchResults } from '../utilities/functions/helper.js';
 
 export default function SearchBar() {
   const [isHovered, setIsHovered] = useState(false);
