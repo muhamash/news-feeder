@@ -17,9 +17,11 @@ const useNewsQuery = ( category = "", searchQuery ) =>
         else if
             ( searchQuery )
         {
-            apiUrl = `http://localhost:8000/v2/search?q=${searchQuery}`;
+            apiUrl += `http://localhost:8000/v2/search?q=${searchQuery}`;
         }
 
+        console.log( "usenewsquery" )
+        
         fetchSearchResults( apiUrl )
             .then( ( data ) =>
             {

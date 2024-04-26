@@ -1,13 +1,18 @@
-import { useNewsContext } from '../utilities/context/useNewsContext';
+import { useNewsHook } from '../utilities/hooks/useNewsHook';
+import useNewsQuery from '../utilities/hooks/useNewsQuery';
 import NewsItems from './NewsItems';
 
 export default function Main() {
-  const { newsData, searchResults } = useNewsContext();
+  const { state } = useNewsHook();
+  const { selectedCategory, searchQuery } = state;
+
+  const newsData = useNewsQuery( selectedCategory, searchQuery );
+  console.log( newsData );
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-10'>
-      { searchResults.length > 0 ? (
-        searchResults.map( ( result, index ) => (
+      { newsData && newsData.length > 0?
+        newsData.map( ( result, index ) => (
           <NewsItems
             key={ index }
             title={ result.title }
@@ -16,19 +21,10 @@ export default function Main() {
             imageSource={ result.urlToImage }
             author={ result.author }
           />
-        ) )
-      ) : (
-        newsData.map( ( newsItem, index ) => (
-          <NewsItems
-            key={ index }
-            title={ newsItem.title }
-            text={ newsItem.content }
-            time={ newsItem.publishedAt }
-            imageSource={ newsItem.urlToImage }
-            author={ newsItem.author }
-          />
-        ) )
-      ) }
+        ) ) : (
+          <p>not found</p>
+        )
+      }
     </div>
   );
 }

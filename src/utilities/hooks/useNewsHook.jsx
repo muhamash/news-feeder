@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { NewsContext } from "../context/NewsContext";
+import { NewsContext } from "../context/NewsProvider";
 
-export const useNews = () =>
+export const useNewsHook = () =>
 {
     const context = useContext( NewsContext );
+    console.log("usenewshook")
 
     if ( !context )
     {

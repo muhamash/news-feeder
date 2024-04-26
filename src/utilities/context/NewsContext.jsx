@@ -1,21 +1,35 @@
 /* eslint-disable react/prop-types */
-import { createContext, useReducer } from "react";
-import { newsReducer } from "../reducer/newsReducer";
+import { createContext, useEffect, useState } from 'react';
+import { fetchSearchResults } from '../functions/helper.js';
 
 export const NewsContext = createContext();
 
-export const NewsContextProvider = ( { children } ) =>
+export const NewsProvider = ( { children } ) =>
 {
-    const initialState = {
-        selectedCategory: "",
-        searchQuery: "",
+    const [ newsData, setNewsData ] = useState( [] );
+    const [searchResults, setSearchResults] = useState([]);
+
+    useEffect( () =>
+    {
+        fetchSearchResults(`http://localhost:8000/v2/top-headlines?`)
+            .then( ( data ) =>
+            {
+                setNewsData( data.articles );
+                console.log( 'Fetched news items:', data.articles );
+            } )
+            .catch( ( error ) =>
+                console.error( 'Error fetching news items:', error )
+            );
+    }, [] );
+
+    const setSearchResultsData = ( results ) =>
+    {
+        setSearchResults( results );
     };
 
-    const [ state, dispatch ] = useReducer( newsReducer, initialState );
-
     return (
-        <NewsContext.provider value = {state, dispatch}>
-            {children}
-        </NewsContext.provider>
-    )
-}
+        <NewsContext.Provider value={ { newsData, searchResults, setSearchResultsData } }>
+            { children }
+        </NewsContext.Provider>
+    );
+};
