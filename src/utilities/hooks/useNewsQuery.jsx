@@ -19,15 +19,14 @@ const useNewsQuery = ( category = "", searchQuery ) =>
         {
             apiUrl += `http://localhost:8000/v2/search?q=${searchQuery}`;
         }
-
-        console.log( "usenewsquery" )
         
         fetchSearchResults( apiUrl )
             .then( ( data ) =>
             {
                 if ( !ignore )
                 {
-                    setNewsData( data.article || data.result );
+                    setNewsData( data.articles || data.result );
+                    console.log(data.result)
                 }
             } )
             .catch( ( error ) =>

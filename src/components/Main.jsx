@@ -7,7 +7,6 @@ export default function Main() {
   const { selectedCategory, searchQuery } = state;
 
   const newsData = useNewsQuery( selectedCategory, searchQuery );
-  console.log( newsData );
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-10'>

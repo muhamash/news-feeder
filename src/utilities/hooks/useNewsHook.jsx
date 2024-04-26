@@ -4,7 +4,6 @@ import { NewsContext } from "../context/NewsProvider";
 export const useNewsHook = () =>
 {
     const context = useContext( NewsContext );
-    console.log("usenewshook")
 
     if ( !context )
     {
