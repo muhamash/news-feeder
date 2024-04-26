@@ -1,7 +1,23 @@
-import SearchBar from "./SearchBar";
+import { useState } from 'react';
+import { debounceFn } from '../utilities/functions/helper';
+import { useNewsHook } from '../utilities/hooks/useNewsHook';
+import Category from './Category';
 
 export default function Nav ()
 {
+    const [ isHovered, setIsHovered ] = useState( false );
+    const { dispatch } = useNewsHook();
+
+    const handleSearchInputChange = ( event ) =>
+    {
+        delayedDispatch( event.target.value );
+    };
+
+    const delayedDispatch = debounceFn( ( query ) =>
+    {
+        dispatch( { type: "SEARCH_NEWS", payload: query } );
+    }, 300 );
+
 
     return (
         <nav className="border-b border-black py-6 md:py-8">
@@ -61,20 +77,25 @@ export default function Nav ()
                     </svg>
                     <span>Thursday, February 25, 2021</span>
                 </div>
-                <SearchBar/>
+                <div className="flex items-center space-x-3 lg:space-x-8">
+                    <div
+                        className="relative"
+                    >
+                        <img className="cursor-pointer" src="/search.svg" alt="Search" />
+                        { isHovered && (
+                            <input
+                                type="text"
+                                className="absolute top-3 right-[50px] w-[200px] h-[30px] px-4 py-2 border border-gray-300 rounded-md transition-opacity duration-300 delay-300"
+                                placeholder="Search..."
+                                onBlur={ () => setIsHovered( false ) }
+                                onChange={ handleSearchInputChange }
+                            />
+                        ) }
+                    </div>
+                </div>
             </div>
             <div className="container mx-auto mt-6">
-                <ul
-                    className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base"
-                >
-                    <li><a href="#">General</a></li>
-                    <li><a href="#">Business</a></li>
-                    <li><a href="#">Entertainment</a></li>
-                    <li><a href="#">Health</a></li>
-                    <li><a href="#">Science</a></li>
-                    <li><a href="#">Sports</a></li>
-                    <li><a href="#">Technology</a></li>
-                </ul>
+                <Category/>
             </div>
         </nav>
     );

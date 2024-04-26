@@ -10,4 +10,6 @@ export const useNewsHook = () =>
     {
         throw new Error( "useNews context is not using anymore!" );
     }
+
+    return context;
 };
