@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <NewsProvider>
-        <div className=''>
+        <div className='my-5 lg:my-10'>
           <Nav />
           <Main />
         </div>

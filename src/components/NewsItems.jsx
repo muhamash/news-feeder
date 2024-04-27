@@ -15,12 +15,12 @@ export default function NewsItems ( { title, text, time, imageSource, author, } 
     } );
 
     return (
-        <div className='flex  gap-8 px-2'>
+        <div className='flex flex-col-reverse md:flex-row gap-5 px-2'>
             {/* info */ }
-            <div className="w-1/2">
+            <div className="w-full">
                 <a href="#"
                 ><h3
-                    className="mb-2.5 text-2xl font-bold lg:text-[28px]"
+                    className="mb-2.5 text-xl font-bold lg:text-[28px] w-full"
                 >
                         { title }
                     </h3></a>
@@ -32,12 +32,14 @@ export default function NewsItems ( { title, text, time, imageSource, author, } 
                 </p>
             </div>
             {/* thumb */ }
-            <div className="w-1/2">
-                <img
-                    className="w-full cursor-pointer hover:scale-110 duration-150 ease-in-out"
-                    src={ imageSource }
-                    alt="thumb"
-                />
+            <div className="">
+                { imageSource && 
+                    <img
+                        className="w-[85%] mx-auto cursor-pointer hover:scale-110 duration-150 ease-in-out"
+                        src={ imageSource }
+                        alt="img?"
+                    />
+                }
                 <p className="mt-5 text-base text-green-600">
                     { author }
                 </p>
