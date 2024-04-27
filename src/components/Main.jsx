@@ -9,7 +9,7 @@ export default function Main() {
   const newsData = useNewsQuery( selectedCategory, searchQuery );
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-10'>
+    <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10'>
       { newsData && newsData.length > 0?
         newsData.map( ( result, index ) => (
           <NewsItems
