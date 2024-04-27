@@ -20,7 +20,7 @@ export default function Nav ()
 
     const delayedDispatch = debounceFn( ( query ) =>
     {
-        dispatch( { type: "SEARCH_NEWS", payload: query } );
+        dispatch( { type: "SEARCH", payload: query } );
     }, 300 );
 
 
