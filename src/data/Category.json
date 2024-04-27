@@ -1,9 +1,5 @@
 [
     {
-        "name": "General",
-        "value": "general"
-    },
-    {
         "name": "Business",
         "value": "business"
     },

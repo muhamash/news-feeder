@@ -10,8 +10,9 @@ export const NewsProvider = ({ children }) => {
         searchQuery: "",
     };
 
-    const [state, dispatch] = useReducer(newsReducer, initialState);
+    const [ state, dispatch ] = useReducer( newsReducer, initialState );
     const contextValue = { state, dispatch };
+    console.log(contextValue)
     return (
         <NewsContext.Provider value={contextValue}>
             {children}

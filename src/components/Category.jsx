@@ -4,8 +4,10 @@ import { useNewsHook } from '../utilities/hooks/useNewsHook';
 const Category = () => {
   const { dispatch } = useNewsHook();
 
-  const handleCategoryClick = (categoryValue) => {
-    dispatch({ type: "SELECT_CATEGORY", payload: categoryValue });
+  const handleCategoryClick = ( categoryValue ) =>
+  {
+    console.log("handle category fired!", dispatch, categoryValue)
+    dispatch( { type: "CATEGORY", payload: categoryValue } );
   };
 
   return (
