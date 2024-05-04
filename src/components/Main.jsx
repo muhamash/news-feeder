@@ -9,15 +9,15 @@ export default function Main() {
   const newsData = useNewsQuery( selectedCategory, searchQuery );
 
   return (
-    <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10'>
+    <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 py-5'>
       { newsData && newsData.length > 0?
         newsData.map( ( result, index ) => (
           <NewsItems
             key={ index }
             title={ result.title }
-            text={ result.content }
+            text={ result.description }
             time={ result.publishedAt }
-            imageSource={ result.urlToImage }
+            imageSource={ result.urlToImage ?? false }
             author={ result.author }
           />
         ) ) : (

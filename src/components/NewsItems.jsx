@@ -33,12 +33,12 @@ export default function NewsItems ( { title, text, time, imageSource, author, } 
             </div>
             {/* thumb */ }
             <div className="">
-                { imageSource && 
+                { imageSource && (
                     <img
                         className="w-[85%] mx-auto cursor-pointer hover:scale-110 duration-150 ease-in-out"
                         src={ imageSource }
                         alt="img?"
-                    />
+                    />)
                 }
                 <p className="mt-5 text-base text-green-600">
                     { author }

@@ -30,4 +30,16 @@ const debounceFn = (func, delay) => {
     };
 };
 
-export { debounceFn, fetchSearchResults };
+const formattedTime = ( time ) => (
+    new Date( time ).toLocaleString( 'en-US', {
+        timeZone: 'Asia/Dhaka',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    } )
+);
+
+export { debounceFn, fetchSearchResults, formattedTime };
